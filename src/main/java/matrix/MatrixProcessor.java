@@ -58,10 +58,10 @@ public class MatrixProcessor {
                 return transposeMainDiagonal(matrix);
             case SIDE_DIAGONAL:
                 return transposeSideDiagonal(matrix);
-            case HORIZONTAL_LINE:
-                return transposeHorizontalLine(matrix);
             case VERTICAL_LINE:
                 return transposeVerticalLine(matrix);
+            case HORIZONTAL_LINE:
+                return transposeHorizontalLine(matrix);
             default:
                 throw new IllegalArgumentException("Transposition type cannot be null");
         }
@@ -117,5 +117,48 @@ public class MatrixProcessor {
             }
         }
         return result;
+    }
+
+    public double calculateDeterminant(double[][] matrix) {
+        if (matrix.length != matrix[0].length) {
+            throw new IllegalArgumentException("Cannot calculate determinant for non-square matrix");
+        }
+
+        int size = matrix[0].length;
+        if (size == 1) {
+            return matrix[0][0];
+        }
+
+        double determinant = 0;
+        for (int i = 0; i < size; i++) {
+            determinant += matrix[0][i] * Math.pow(-1, i + 2) * calculateDeterminant(getMinor(matrix, 0, i));
+        }
+        return determinant;
+    }
+
+    private double[][] getMinor(double[][] matrix, int row, int col) {
+        int size = matrix.length;
+
+        double[][] minor = new double[size - 1][size - 1];
+        int minorRow = 0;
+        int minorCol = 0;
+
+        for (int i = 0; i < size; i++) {
+            if (i == row) {
+                continue;
+            }
+
+            for (int j = 0; j < size; j++) {
+                if (j == col) {
+                    continue;
+                }
+                minor[minorRow][minorCol] = matrix[i][j];
+                minorCol++;
+            }
+
+            minorRow++;
+            minorCol = 0;
+        }
+        return minor;
     }
 }
