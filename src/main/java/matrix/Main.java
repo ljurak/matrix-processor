@@ -31,6 +31,16 @@ public class Main {
                     secondMatrix = readMatrix(scanner);
                     processMultiplication(firstMatrix, secondMatrix, processor);
                     break;
+                case 4:
+                    showTranspositionMenu();
+                    TranspositionType transpositionType = TranspositionType.valueOfType(Integer.parseInt(scanner.nextLine()));
+                    if (transpositionType == null) {
+                        System.out.println("Incorrect option! Try again.\n");
+                        break;
+                    }
+                    firstMatrix = readMatrix(scanner);
+                    processTransposition(firstMatrix, processor, transpositionType);
+                    break;
                 default:
                     System.out.println("Incorrect option! Try again.\n");
                     break;
@@ -43,7 +53,16 @@ public class Main {
         System.out.println("1. Add matrices");
         System.out.println("2. Multiply matrix by a number");
         System.out.println("3. Multiply matrices");
+        System.out.println("4. Transpose matrix");
         System.out.println("0. Exit");
+        System.out.print("Your choice: ");
+    }
+
+    private static void showTranspositionMenu() {
+        System.out.println("1. Main diagonal");
+        System.out.println("2. Side diagonal");
+        System.out.println("3. Vertical line");
+        System.out.println("4. Horizontal line");
         System.out.print("Your choice: ");
     }
 
@@ -70,6 +89,12 @@ public class Main {
     private static void processMultiplication(double[][] first, int number, MatrixProcessor processor) {
         System.out.println("The multiplication result is:");
         printMatrix(processor.multiplyMatrixByNumber(first, number));
+        System.out.println();
+    }
+
+    private static void processTransposition(double[][] first, MatrixProcessor processor, TranspositionType transpositionType) {
+        System.out.println("The transposition result is:");
+        printMatrix(processor.transposeMatrix(first, transpositionType));
         System.out.println();
     }
 
