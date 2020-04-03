@@ -2,14 +2,14 @@ package matrix;
 
 public class MatrixProcessor {
 
-    public int[][] addMatrices(int[][] first, int[][] second) {
+    public double[][] addMatrices(double[][] first, double[][] second) {
         if (first.length != second.length || first[0].length != second[0].length) {
             throw new IllegalArgumentException("Cannot add matrices of different dimensions");
         }
 
         int rows = first.length;
         int cols = first[0].length;
-        int[][] result = new int[rows][cols];
+        double[][] result = new double[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -19,10 +19,10 @@ public class MatrixProcessor {
         return result;
     }
 
-    public int[][] multiplyMatrixByNumber(int[][] matrix, int number) {
+    public double[][] multiplyMatrixByNumber(double[][] matrix, int number) {
         int rows = matrix.length;
         int cols = matrix[0].length;
-        int[][] result = new int[rows][cols];
+        double[][] result = new double[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
@@ -32,7 +32,7 @@ public class MatrixProcessor {
         return result;
     }
 
-    public int[][] multiplyMatrices(int[][] first, int[][] second) {
+    public double[][] multiplyMatrices(double[][] first, double[][] second) {
         if (first[0].length != second.length) {
             throw new IllegalStateException("Illegal size of matrices");
         }
@@ -40,7 +40,7 @@ public class MatrixProcessor {
         int rows = first.length;
         int cols = second[0].length;
         int rowCol = second.length;
-        int[][] result = new int[rows][cols];
+        double[][] result = new double[rows][cols];
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
