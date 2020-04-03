@@ -41,6 +41,10 @@ public class Main {
                     firstMatrix = readMatrix(scanner);
                     processTransposition(firstMatrix, processor, transpositionType);
                     break;
+                case 5:
+                    firstMatrix = readMatrix(scanner);
+                    processDeterminant(firstMatrix, processor);
+                    break;
                 default:
                     System.out.println("Incorrect option! Try again.\n");
                     break;
@@ -54,6 +58,7 @@ public class Main {
         System.out.println("2. Multiply matrix by a number");
         System.out.println("3. Multiply matrices");
         System.out.println("4. Transpose matrix");
+        System.out.println("5. Calculate a determinant");
         System.out.println("0. Exit");
         System.out.print("Your choice: ");
     }
@@ -96,6 +101,16 @@ public class Main {
         System.out.println("The transposition result is:");
         printMatrix(processor.transposeMatrix(first, transpositionType));
         System.out.println();
+    }
+
+    private static void processDeterminant(double[][] first, MatrixProcessor processor) {
+        if (first.length != first[0].length) {
+            System.out.println("ERROR\n");
+        } else {
+            System.out.println("The result is:");
+            System.out.println(processor.calculateDeterminant(first));
+            System.out.println();
+        }
     }
 
     private static double[][] readMatrix(Scanner scanner) {
