@@ -23,7 +23,7 @@ public class Main {
                 case 2:
                     firstMatrix = readMatrix(scanner);
                     System.out.print("Enter a number: ");
-                    int number = Integer.parseInt(scanner.nextLine());
+                    double number = Double.parseDouble(scanner.nextLine());
                     processMultiplication(firstMatrix, number, processor);
                     break;
                 case 3:
@@ -45,6 +45,10 @@ public class Main {
                     firstMatrix = readMatrix(scanner);
                     processDeterminant(firstMatrix, processor);
                     break;
+                case 6:
+                    firstMatrix = readMatrix(scanner);
+                    processInverse(firstMatrix, processor);
+                    break;
                 default:
                     System.out.println("Incorrect option! Try again.\n");
                     break;
@@ -59,6 +63,7 @@ public class Main {
         System.out.println("3. Multiply matrices");
         System.out.println("4. Transpose matrix");
         System.out.println("5. Calculate a determinant");
+        System.out.println("6. Inverse matrix");
         System.out.println("0. Exit");
         System.out.print("Your choice: ");
     }
@@ -91,7 +96,7 @@ public class Main {
         }
     }
 
-    private static void processMultiplication(double[][] first, int number, MatrixProcessor processor) {
+    private static void processMultiplication(double[][] first, double number, MatrixProcessor processor) {
         System.out.println("The multiplication result is:");
         printMatrix(processor.multiplyMatrixByNumber(first, number));
         System.out.println();
@@ -107,8 +112,18 @@ public class Main {
         if (first.length != first[0].length) {
             System.out.println("ERROR\n");
         } else {
-            System.out.println("The result is:");
+            System.out.println("The determinant is:");
             System.out.println(processor.calculateDeterminant(first));
+            System.out.println();
+        }
+    }
+
+    private static void processInverse(double[][] first, MatrixProcessor processor) {
+        if (first.length != first[0].length) {
+            System.out.println("ERROR\n");
+        } else {
+            System.out.println("The inverse result is:");
+            printMatrix(processor.inverseMatrix(first));
             System.out.println();
         }
     }
@@ -132,7 +147,7 @@ public class Main {
     private static void printMatrix(double[][] matrix) {
         for (double[] row : matrix) {
             for (double value : row) {
-                System.out.printf("%.2f ", value);
+                System.out.printf("% .2f ", value);
             }
             System.out.println();
         }
