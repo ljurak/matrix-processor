@@ -5,7 +5,7 @@ Console app enabling basic operations on matrices (e.g. adding, multiplication, 
 ## How to start
 
 ```bash
-https://github.com/ljurak/matrix-processor.git
+git clone https://github.com/ljurak/matrix-processor.git
 cd matrix-processor
 mvn clean package
 cd target
